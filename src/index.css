@@ -109,3 +109,12 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+.logo {
+  width: 180px;
+}
+header {
+  background-color: rgb(27, 101, 48);
+  text-align: center;
+  padding: 30px;
+  
+}

@@ -182,3 +182,23 @@
     border-right-color: var(--border);
   }
 }
+.logo {
+  width: 100px;
+}
+header {
+  background-color: #1e3a8a;
+  padding: 30px;
+  color: white;
+  text-align: center;
+}
+nav {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+nav button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #2563eb;
+}
