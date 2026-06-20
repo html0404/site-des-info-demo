@@ -1,6 +1,6 @@
 function App() {
   const site = "Info4You";
-  const auteur = "Youssef et melanie";
+  const auteur = "Youssef et Mélanie";
   const annee = 2026;
 
   return (
@@ -10,6 +10,18 @@ function App() {
       <p>Créé par : {auteur}</p>
 
       <p>Année : {annee}</p>
+
+      <hr />
+
+      <nav>
+        <button>Accueil</button>
+        <button>Actualités</button>
+        <button>Sport</button>
+        <button>Culture</button>
+        <button>Contact</button>
+      </nav>
+
+      <hr />
 
       <div>
         <h2>Actualités</h2>
