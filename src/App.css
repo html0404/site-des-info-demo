@@ -186,7 +186,7 @@
   width: 100px;
 }
 header {
-  background-color: #1e3a8a;
+  background-color: #8a1e1e;
   padding: 30px;
   color: white;
   text-align: center;
@@ -200,5 +200,5 @@ nav {
 nav button {
   padding: 10px 20px;
   border-radius: 8px;
-  background-color: #2563eb;
+  background-color: #eb25b3;
 }

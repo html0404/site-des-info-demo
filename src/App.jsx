@@ -1,4 +1,8 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Admin from "./pages/Admin";
 import logo from "./assets/image/logo.jpg";
+import "./App.css";
 function App() {
   const site = "Info4You";
   const auteur = "Youssef et Mélanie";
@@ -22,6 +26,7 @@ function App() {
         <button>Sport</button>
         <button>Culture</button>
         <button>Contact</button>
+        <button>Admin</button>
       </nav>
 
       <hr />
