@@ -3,28 +3,31 @@ import { useState } from "react";
 function Admin() {
   const [titre, setTitre] = useState("");
   const [contenue, setContenue] = useState("");
-  const [categorie, setCategorie] = useState("");
-  const [auteur, setAuteur] = useState("");
- const ajouterArticle = () => {
-  const formData = new FormData();
 
-  formData.append("titre", titre);
-  formData.append("contenue", contenue);
-  formData.append("categorie", categorie);
-  formData.append("auteur", auteur);
+  const publierArticle = () => {
+    console.log("Bouton Publier cliqué");
 
-  fetch("http://localhost/info4you/api-info4you/addArticle.php", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      alert(data);
+    fetch("http://localhost/info4you/api-info4you/addArticle.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        titre,
+        contenue,
+      }),
     })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+      .then((response) => response.text())
+      .then((data) => {
+        alert(data);
+        setTitre("");
+        setContenue("");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Erreur : " + error);
+      });
+  };
 
   return (
     <div>
@@ -49,29 +52,9 @@ function Admin() {
       <br />
       <br />
 
-      <input
-        type="text"
-        placeholder="Catégorie"
-        value={categorie}
-        onChange={(e) => setCategorie(e.target.value)}
-      />
-
-      <br />
-      <br />
-
-      <input
-        type="text"
-        placeholder="Auteur"
-        value={auteur}
-        onChange={(e) => setAuteur(e.target.value)}
-      />
-
-      <br />
-      <br />
-
-     <button onClick={ajouterArticle}>
-  Ajouter
-</button>
+      <button onClick={publierArticle}>
+        Publier
+      </button>
     </div>
   );
 }

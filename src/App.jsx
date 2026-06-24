@@ -36,7 +36,6 @@ function App() {
     <button>Admin</button>
   </Link>
 </nav>
-
         <hr />
 
         <Routes>

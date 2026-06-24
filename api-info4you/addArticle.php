@@ -18,14 +18,20 @@ if ($conn->connect_error) {
     exit;
 }
 
-$result = $conn->query("SELECT * FROM articles");
+$data = json_decode(file_get_contents("php://input"), true);
 
-$articles = [];
+$titre = $data["titre"] ?? "";
+$contenue = $data["contenue"] ?? "";
 
-while ($row = $result->fetch_assoc()) {
-    $articles[] = $row;
+$stmt = $conn->prepare("INSERT INTO articles (titre, contenue) VALUES (?, ?)");
+$stmt->bind_param("ss", $titre, $contenue);
+
+if ($stmt->execute()) {
+    echo json_encode(["message" => "Article ajouté"]);
+} else {
+    http_response_code(500);
+    echo json_encode(["error" => "Erreur : " . $stmt->error]);
 }
 
-echo json_encode($articles);
-
+$stmt->close();
 $conn->close();
