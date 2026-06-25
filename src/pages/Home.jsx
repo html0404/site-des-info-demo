@@ -4,7 +4,7 @@ function Home() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost/info4you/api-info4you/article.php")
+   fetch("http://localhost/info4you/api-info4you/article.php")
       .then((response) => response.json())
       .then((data) => setArticles(data))
       .catch((error) => console.error(error));

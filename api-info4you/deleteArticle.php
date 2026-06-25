@@ -21,22 +21,24 @@ if ($conn->connect_error) {
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$titre = $data["titre"] ?? "";
-$contenue = $data["contenue"] ?? "";
-$categorie = $data["categorie"] ?? "Général";
-$auteur = $data["auteur"] ?? "Anonyme";
+$id = $data["id"] ?? null;
 
-if (empty($titre) || empty($contenue)) {
+if (!$id) {
     http_response_code(400);
-    echo json_encode(["error" => "Titre et contenu sont obligatoires"]);
+    echo json_encode(["error" => "ID article manquant"]);
     exit;
 }
 
-$stmt = $conn->prepare("INSERT INTO articles (titre, contenue, categorie, auteur, date_creation) VALUES (?, ?, ?, ?, NOW())");
-$stmt->bind_param("ssss", $titre, $contenue, $categorie, $auteur);
+$stmt = $conn->prepare("DELETE FROM articles WHERE id = ?");
+$stmt->bind_param("i", $id);
 
 if ($stmt->execute()) {
-    echo json_encode(["message" => "Article ajouté avec succès"]);
+    if ($stmt->affected_rows > 0) {
+        echo json_encode(["message" => "Article supprimé"]);
+    } else {
+        http_response_code(404);
+        echo json_encode(["error" => "Article non trouvé"]);
+    }
 } else {
     http_response_code(500);
     echo json_encode(["error" => "Erreur : " . $stmt->error]);
