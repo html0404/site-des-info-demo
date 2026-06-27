@@ -1,10 +1,18 @@
 function Contact() {
   return (
-    <div>
+    <section className="contact-page">
       <h2>Contact</h2>
-      <p>Email : contact@info4you.com</p>
-      <p>Téléphone : +212 600 000 000</p>
-    </div>
+      <p>Une question, une remarque ou une idee d'article ? Contactez l'equipe.</p>
+
+      <div className="contact-list">
+        <p>
+          <strong>Email :</strong> contact@info4you.com
+        </p>
+        <p>
+          <strong>Telephone :</strong> +212 600 000 000
+        </p>
+      </div>
+    </section>
   );
 }
 

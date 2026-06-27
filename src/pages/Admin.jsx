@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 function Admin() {
   const [titre, setTitre] = useState("");
@@ -10,12 +10,7 @@ function Admin() {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
 
-  // Charger les articles au chargement du composant
-  useEffect(() => {
-    chargerArticles();
-  }, []);
-
-  const chargerArticles = () => {
+  const chargerArticles = useCallback(() => {
     fetch("http://localhost/info4you/api-info4you/article.php")
       .then((response) => response.json())
       .then((data) => {
@@ -25,7 +20,12 @@ function Admin() {
         console.error("Erreur lors du chargement des articles:", error);
         setArticles([]);
       });
-  };
+  }, []);
+
+  // Charger les articles au chargement du composant
+  useEffect(() => {
+    chargerArticles();
+  }, [chargerArticles]);
 
   const afficherMessage = (msg, type) => {
     setMessage(msg);
